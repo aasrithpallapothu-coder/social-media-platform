@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocialConnect - Social Media Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+
+        <div class="logo">
+            SocialConnect
+        </div>
+
+        <div class="search-box">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search users..."
+            >
+            <button onclick="searchUsers()">Search</button>
+        </div>
+
+        <nav>
+            <a href="#" onclick="showSection('home')">Home</a>
+            <a href="#" onclick="showSection('profile')">Profile</a>
+            <a href="#" onclick="showSection('friends')">Friends</a>
+            <a href="#" onclick="showSection('messages')">Messages</a>
+            <a href="#" onclick="showSection('notifications')">Notifications</a>
+        </nav>
+
+        <div class="user-area">
+            <div class="user-icon">A</div>
+            <span>Aasrith</span>
+        </div>
+
+    </header>
+
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Left Sidebar -->
+        <aside class="left-sidebar">
+
+            <div class="profile-card">
+
+                <div class="profile-image" id="profileAvatar">
+                    A
+                </div>
+
+                <h2 id="profileName">
+                    Aasrith
+                </h2>
+
+                <p id="profileUsername">
+                    @aasrith
+                </p>
+
+                <button onclick="showSection('profile')">
+                    View Profile
+                </button>
+
+            </div>
+
+
+            <div class="menu">
+
+                <div onclick="showSection('home')">
+                    Home
+                </div>
+
+                <div onclick="showSection('profile')">
+                    Profile
+                </div>
+
+                <div onclick="showSection('friends')">
+                    Friends
+                </div>
+
+                <div onclick="showSection('messages')">
+                    Messages
+                </div>
+
+                <div onclick="showSection('notifications')">
+                    Notifications
+                </div>
+
+                <div onclick="showSection('events')">
+                    Events
+                </div>
+
+                <div onclick="showSection('settings')">
+                    Settings
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- HOME -->
+            <section id="home" class="page-section active">
+
+                <div class="create-post">
+
+                    <h2>Create Post</h2>
+
+                    <textarea
+                        id="postText"
+                        placeholder="What's on your mind?"
+                    ></textarea>
+
+                    <div id="selectedMedia"></div>
+
+                    <div class="post-options">
+
+                        <label class="upload-button">
+                            Photo
+                            <input
+                                type="file"
+                                id="photoInput"
+                                accept="image/*"
+                                onchange="selectPhoto()"
+                            >
+                        </label>
+
+                        <label class="upload-button">
+                            Video
+                            <input
+                                type="file"
+                                id="videoInput"
+                                accept="video/*"
+                                onchange="selectVideo()"
+                            >
+                        </label>
+
+                        <button
+                            class="post-button"
+                            onclick="createPost()"
+                        >
+                            Post
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Posts -->
+                <div id="postsContainer"></div>
+
+            </section>
+
+
+            <!-- PROFILE -->
+            <section id="profile" class="page-section">
+
+                <div class="large-profile">
+
+                    <div class="large-avatar" id="largeAvatar">
+                        A
+                    </div>
+
+                    <h1 id="largeProfileName">
+                        Aasrith
+                    </h1>
+
+                    <p id="largeProfileUsername">
+                        @aasrith
+                    </p>
+
+                    <p id="bio">
+                        Web development student and beginner developer.
+                    </p>
+
+                    <button onclick="editProfile()">
+                        Edit Profile
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- FRIENDS -->
+            <section id="friends" class="page-section">
+
+                <div class="section-card">
+
+                    <h2>Friend Suggestions</h2>
+
+                    <div id="friendList"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- MESSAGES -->
+            <section id="messages" class="page-section">
+
+                <div class="section-card">
+
+                    <h2>Messages</h2>
+
+                    <div class="chat-list">
+
+                        <button onclick="openChat('Sanjay')">
+                            Sanjay
+                        </button>
+
+                        <button onclick="openChat('Pranadeep')">
+                            Pranadeep
+                        </button>
+
+                    </div>
+
+                    <div id="chatArea" class="chat-area">
+
+                        <p>
+                            Select a friend to start chatting.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- NOTIFICATIONS -->
+            <section id="notifications" class="page-section">
+
+                <div class="section-card">
+
+                    <h2>Notifications</h2>
+
+                    <div id="notificationList">
+
+                        <div class="notification">
+                            Sanjay liked your post.
+                        </div>
+
+                        <div class="notification">
+                            Pranadeep sent you a friend request.
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- EVENTS -->
+            <section id="events" class="page-section">
+
+                <div class="section-card">
+
+                    <h2>Create Event</h2>
+
+                    <input
+                        type="text"
+                        id="eventName"
+                        placeholder="Event name"
+                    >
+
+                    <input
+                        type="date"
+                        id="eventDate"
+                    >
+
+                    <button onclick="createEvent()">
+                        Create Event
+                    </button>
+
+                </div>
+
+                <div class="section-card">
+
+                    <h2>Upcoming Events</h2>
+
+                    <div id="eventList"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- SETTINGS -->
+            <section id="settings" class="page-section">
+
+                <div class="section-card">
+
+                    <h2>Settings</h2>
+
+                    <button onclick="changeTheme()">
+                        Change Theme
+                    </button>
+
+                    <button onclick="clearData()">
+                        Clear Local Data
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- SEARCH RESULTS -->
+            <section id="searchResults" class="page-section">
+
+                <div class="section-card">
+
+                    <h2>Search Results</h2>
+
+                    <div id="searchResultList"></div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- Right Sidebar -->
+        <aside class="right-sidebar">
+
+            <div class="card">
+
+                <h2>Friend Suggestions</h2>
+
+                <div class="friend-small">
+
+                    <div class="small-avatar">
+                        S
+                    </div>
+
+                    <div>
+                        <strong>Sanjay</strong>
+                        <p>@sanjay</p>
+                    </div>
+
+                    <button onclick="sendFriendRequest('Sanjay', this)">
+                        Add
+                    </button>
+
+                </div>
+
+
+                <div class="friend-small">
+
+                    <div class="small-avatar">
+                        P
+                    </div>
+
+                    <div>
+                        <strong>Pranadeep</strong>
+                        <p>@pranadeep</p>
+                    </div>
+
+                    <button onclick="sendFriendRequest('Pranadeep', this)">
+                        Add
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>Upcoming Events</h2>
+
+                <div id="sideEvents">
+
+                    <div class="event">
+                        <strong>Web Development Workshop</strong>
+                        <p>October 10, 2026</p>
+                    </div>
+
+                    <div class="event">
+                        <strong>React Learning Session</strong>
+                        <p>October 15, 2026</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
